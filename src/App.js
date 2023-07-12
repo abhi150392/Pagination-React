@@ -18,8 +18,14 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  const setPageHandler = (selectedPage) => {
-    setPage(selectedPage);
+  const selectPageHandler = (selectedPage) => {
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= products.length / 10 &&
+      selectedPage != page
+    ) {
+      setPage(selectedPage);
+    }
   };
   //console.log(products);
 
@@ -42,19 +48,31 @@ const App = () => {
 
       {products.length > 0 && (
         <div className="pagination">
-          <span>▶️</span>
+          <span
+            className={page > 1 ? "" : "pagination__deSelect"}
+            onClick={() => selectPageHandler(page + 1)}
+          >
+            ▶️
+          </span>
           {[...Array(products.length / 8)].map((_, i) => {
             return (
               <span
                 className={page === i + 1 ? "pagination__Selected" : ""}
-                onClick={() => setPageHandler(i + 1)}
+                onClick={() => selectPageHandler(i + 1)}
                 key={i}
               >
                 {i + 1}
               </span>
             );
           })}
-          <span>◀️</span>
+          <span
+            className={
+              page < products.length / 10 ? "" : "pagination__deSelect"
+            }
+            onClick={() => selectPageHandler(page - 1)}
+          >
+            ◀️
+          </span>
         </div>
       )}
     </div>

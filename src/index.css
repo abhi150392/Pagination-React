@@ -38,3 +38,7 @@
 .pagination__Selected {
   background-color: rgb(220, 220, 220);
 }
+
+.pagination__deSelect {
+  opacity: 0;
+}
