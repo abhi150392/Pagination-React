@@ -21,3 +21,16 @@
   margin-bottom: 3px;
   object-fit: cover;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.pagination > span {
+  border: 1px solid grey;
+  padding: 15px 20px;
+  cursor: pointer;
+}
