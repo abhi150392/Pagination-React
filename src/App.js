@@ -18,13 +18,16 @@ const App = () => {
     fetchProducts();
   }, []);
 
+  const setPageHandler = (selectedPage) => {
+    setPage(selectedPage);
+  };
   //console.log(products);
 
   return (
     <div>
       {products.length > 0 && (
         <div className="products">
-          {products.slice(0, page * 10).map((product) => {
+          {products.slice(page * 10 - 10, page * 10).map((product) => {
             return (
               <span key={product.id} className="products__single">
                 <img src={product.thumbnail} />
@@ -41,7 +44,15 @@ const App = () => {
         <div className="pagination">
           <span>▶️</span>
           {[...Array(products.length / 8)].map((_, i) => {
-            return <span key={i}>{i + 1}</span>;
+            return (
+              <span
+                className={page === i + 1 ? "pagination__Selected" : ""}
+                onClick={() => setPageHandler(i + 1)}
+                key={i}
+              >
+                {i + 1}
+              </span>
+            );
           })}
           <span>◀️</span>
         </div>
