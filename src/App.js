@@ -4,7 +4,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {
-    const res = await fetch("https://dummyjson.com/products?limit=100");
+    const res = await fetch("https://dummyjson.com/products?limit=80");
     const data = await res.json();
 
     if (data && data.products) {
@@ -24,7 +24,12 @@ const App = () => {
       {products.length > 0 && (
         <div className="products">
           {products.map((product) => {
-            return <li key={product.id}>{product.title}</li>;
+            return (
+              <span key={product.id} className="products__single">
+                <img src={product.thumbnail} />
+                <span>{product.title}</span>
+              </span>
+            );
           })}
         </div>
       )}
